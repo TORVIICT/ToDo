@@ -30,7 +30,7 @@ const FormTodo = props => {
 
         <form onSubmit={handleSubmit}>
             <div className="todo-list">
-                <div className="input">
+                <div className="file_input">
                     <input type="text" className="text" value={descripcion} onChange={e => setDescripcion(e.target.value)} />
                     <button className="button" disabled={descripcion ? "" : "disabled"}> Agregar Tarea</button>
                 </div>

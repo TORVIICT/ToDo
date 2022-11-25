@@ -1,7 +1,7 @@
 html {
   display: flex;
   height: 100%;
-  background-color: #232;
+  background-color: rgba(255, 255, 255, 0.808);
 }
 
 body{
@@ -16,11 +16,117 @@ body{
 
 
 .todo-list{
-  background: rgb(45, 55, 87);
+  background: rgb(255, 255, 255);
   font-size: 20px;
   margin: auto;
   margin-bottom: 25px;
   max-width: 400px;
   padding: 8px 16px;
-  box-shadow: 0 5px 30px rgba($color: #000000, $alpha: 1.0);
+  box-shadow: 0 5px 10px rgba($color: #000000, $alpha: 1.0);
 }
+
+$colorAzul:#03A9F4;
+$colorAzulHover:#1976D2;
+
+@mixin button ($class, $color, $colorHover)  {
+
+  .button#{$class}{background: $color;}
+  .button#{$class}:hover{background: $colorHover;}
+  .button#{$class}:active{background: $color;}
+  
+}
+
+.button{
+  outline: none;
+  padding: 8px;
+  border: 1px solid white;
+  border-radius: 10px;
+  color: #000000;
+}
+
+@include button ('blue', $colorAzul, $colorAzulHover);
+
+.file_input{
+  padding: 2px;
+  background: #ffffff;
+}
+
+.file_input > .text {
+  outline: none;
+  padding: 0px 10px;
+  font-size: 18px;
+  width: 300px;
+  height: 43px;
+  background: transparent;
+  border: 0px solid;
+}
+
+//Agregar color al boton
+
+
+
+//Variables Colores
+
+
+$duracion: 0.4s;
+$stroke: #ff0000;
+$colorText: #222222;
+$colorTextChecked: #156265;
+
+
+
+
+.todo{
+  display: block;
+  position: relative;
+  padding: 1em 1em 1em 16%;
+  margin: 0 auto;
+  cursor: pointer;
+  border-bottom: solid 1px #03A9F4;
+  &:last-child{border-bottom: none;}
+}
+.todo.new-item{
+  opacity: 0;
+  transform: translateX(100px);
+  animation: fadeIn .3s linear forwards;
+}
+@keyframes fadeIn {
+  to{
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+.todo_state{
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.todo_text{
+  color: $colorText;
+  text-align: right;
+  transition: all $duracion/2 linear &$duracion/2;
+}
+
+.todo_icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  margin: auto;
+
+  fill: none;
+  stroke: $stroke;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.todo_line, .todo_box, .todo_check {
+  transition: stroke-dashoffset $duracion cubic-bezier(0.075, 0.82, 0.165, 1)
+}
+
+
