@@ -1,12 +1,22 @@
-import React from "react";
+import React, { Fragment } from "react";
 
-const CheckBox = () => {
+const CheckBox = props => {
+
+    const {
+        onChange,
+        data: {id, descripcion, done}
+    } = props;
 
     return(
+        <Fragment>
 
-        <div>
-            Hola soy CheckBox
-        </div>
+            <label className="todo new-item">
+                <input type="checkBox" className="todo_state" name={id} defaultChecked={done} onChange={onChange} />
+                <div className="todo_text">{descripcion}</div>
+            </label>
+
+        </Fragment>
+
     );
 };
 
