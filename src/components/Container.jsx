@@ -8,7 +8,7 @@ const Container = () => {
     const [list, setList] = useState([]);
 
     const addItem = addItem => {
-        setList([list,addItem])
+        setList([...list, addItem])
     };
 
     return(
