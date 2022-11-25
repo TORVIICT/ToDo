@@ -1,7 +1,7 @@
 html {
   display: flex;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.808);
+  background-color: #F1E9EA;
 }
 
 body{
@@ -16,13 +16,13 @@ body{
 
 
 .todo-list{
-  background: rgb(255, 255, 255);
+  background: white;
   font-size: 20px;
   margin: auto;
   margin-bottom: 25px;
   max-width: 400px;
   padding: 8px 16px;
-  box-shadow: 0 5px 10px rgba($color: #000000, $alpha: 1.0);
+  box-shadow: 0 5px 10px rgba($color: #3f3e3e, $alpha: 1.0);
 }
 
 $colorAzul:#03A9F4;
@@ -39,39 +39,35 @@ $colorAzulHover:#1976D2;
 .button{
   outline: none;
   padding: 8px;
-  border: 1px solid white;
+  border: 1px solid rgb(15, 15, 15);
   border-radius: 10px;
-  color: #000000;
+  color: #B2A198;
+  font-size: 20px;
 }
 
 @include button ('blue', $colorAzul, $colorAzulHover);
 
 .file_input{
   padding: 2px;
-  background: #ffffff;
+  background: #FAFAFA;
 }
 
 .file_input > .text {
   outline: none;
   padding: 0px 10px;
-  font-size: 18px;
+  font-size: 20px;
   width: 300px;
-  height: 43px;
+  height: 40px;
+  margin-bottom: 20px;
   background: transparent;
-  border: 0px solid;
+  border: 1px solid;
+  border-radius: 15px;
 }
 
-//Agregar color al boton
-
-
-
-//Variables Colores
-
-
 $duracion: 0.4s;
-$stroke: #ff0000;
-$colorText: #222222;
-$colorTextChecked: #156265;
+$stroke: #00ff0d;
+$colorText: #B2A198;
+$colorTextChecked: #02d67e;
 
 
 
@@ -99,9 +95,10 @@ $colorTextChecked: #156265;
 
 .todo_state{
   position: absolute;
-  top: 0;
+  top: center;
   left: 0;
-  opacity: 0;
+  //opacity: 0; --- esconder checkbox
+
 }
 
 .todo_text{
@@ -117,6 +114,7 @@ $colorTextChecked: #156265;
   left: 0;
   width: auto;
   margin: auto;
+  padding: 10px;
 
   fill: none;
   stroke: $stroke;
