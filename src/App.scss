@@ -13,3 +13,14 @@ body{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
 }
+
+
+.todo-list{
+  background: chocolate;
+  font-size: 20px;
+  margin: auto;
+  margin-bottom: 25px;
+  max-width: 400px;
+  padding: 8px 16px;
+  box-shadow: 0 5px 30px rgba($color: #000000, $alpha: 1.0);
+}
