@@ -1,110 +1,105 @@
 html {
-  display: flex;
+  background: #ddd;
   height: 100%;
-  background-color: #F1E9EA;
+  display: flex;
 }
-
-body{
-  margin: auto;
+body {
   width: 100%;
+  margin: auto;
 }
 
-.App{
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+.App {
+  font-family: sans-serif;
   text-align: center;
 }
 
-
-.todo-list{
-  background: white;
-  font-size: 20px;
+.todo-list {
+  background: #fff;
+  font-size: 18px;
+  max-width: 300px;
   margin: auto;
-  margin-bottom: 25px;
-  max-width: 400px;
+  margin-bottom: 24px;
   padding: 8px 16px;
-  box-shadow: 0 5px 10px rgba($color: #3f3e3e, $alpha: 1.0);
+  box-shadow: 0 5px 30px rgba(0,0,0,0.2);
 }
 
-$colorAzul:#03A9F4;
-$colorAzulHover:#1976D2;
+$colorRosa: #C2185B;
+$colorRosaHover: #E91E63;
 
-@mixin button ($class, $color, $colorHover)  {
+$colorAzul: #1976D2;
+$colorAzulHover: #03A9F4;
 
-  .button#{$class}{background: $color;}
-  .button#{$class}:hover{background: $colorHover;}
-  .button#{$class}:active{background: $color;}
-  
+@mixin button($class, $color, $colorHover) {
+  .button.#{$class}{background: $color;}
+  .button.#{$class}:hover{background: $colorHover;}
+  .button.#{$class}:active{background: $color;}
 }
 
-.button{
+.button {
   outline: none;
   padding: 8px;
-  border: 1px solid rgb(15, 15, 15);
-  border-radius: 10px;
-  color: #B2A198;
-  font-size: 20px;
+  border: 1px solid white;
+  border-radius: 15px;
+  color: white;
 }
 
+@include button ('pink', $colorRosa, $colorRosaHover);
 @include button ('blue', $colorAzul, $colorAzulHover);
 
-.file_input{
+.file_input {
   padding: 2px;
-  background: #FAFAFA;
+  background: #f8f8f8;
 }
 
 .file_input > .text {
   outline: none;
-  padding: 0px 10px;
-  font-size: 20px;
-  width: 300px;
-  height: 40px;
-  margin-bottom: 20px;
+  padding: 0px, 10px;
+  font-size: 18px;
+  width: 230px;
+  height: 43;
   background: transparent;
-  border: 1px solid;
-  border-radius: 15px;
+  border: 0px solid;
 }
 
 $duracion: 0.4s;
-$stroke: #00ff0d;
-$colorText: #B2A198;
-$colorTextChecked: #02d67e;
+$stroke: #34eb9f;
+$colorText: #222222;
+$colorTextChecked: #85e6e4;
 
-
-
-
-.todo{
+.todo {
   display: block;
   position: relative;
   padding: 1em 1em 1em 16%;
   margin: 0 auto;
   cursor: pointer;
-  border-bottom: solid 1px #03A9F4;
-  &:last-child{border-bottom: none;}
+  border-bottom: solid 1px #ddd;
+  &:last-child {border-bottom: none;}
 }
-.todo.new-item{
+
+.todo.new-item {
   opacity: 0;
   transform: translateX(100px);
   animation: fadeIn .3s linear forwards;
 }
+
 @keyframes fadeIn {
-  to{
+  to {
     transform: translateX(0px);
     opacity: 1;
   }
 }
 
-.todo_state{
+.todo_state {
   position: absolute;
-  top: center;
+  top: 0;
   left: 0;
-  //opacity: 0; --- esconder checkbox
-
+  opacity: 0;
 }
 
-.todo_text{
+.todo_text {
   color: $colorText;
   text-align: right;
-  transition: all $duracion/2 linear &$duracion/2;
+  transition: all $duracion/2 linear $duracion/2;
 }
 
 .todo_icon {
@@ -112,9 +107,9 @@ $colorTextChecked: #02d67e;
   top: 0;
   bottom: 0;
   left: 0;
-  width: auto;
+  width: 100%;
+  height: auto;
   margin: auto;
-  padding: 10px;
 
   fill: none;
   stroke: $stroke;
@@ -127,4 +122,58 @@ $colorTextChecked: #02d67e;
   transition: stroke-dashoffset $duracion cubic-bezier(0.075, 0.82, 0.165, 1)
 }
 
+.todo_circle {
+  stroke: $stroke;
+  stroke-dasharray: 1 6;
+  stroke-width: 0;
 
+  transform-origin: 13.5px 12.5px;
+  transform: scale(0.4) rotate(0deg);
+  animation: none $duracion linear;
+
+  @keyframes explode {
+    30% {
+      stroke-width: 3;
+      stroke-opacity: 1;
+      transform: scale(0.8) rotate(40deg);
+    }
+
+    100% {
+      stroke-width: 0;
+      stroke-opacity: 0;
+      transform: scale(1.1) rotate(60deg);
+    }
+  }
+
+}
+
+.todo_box {
+  stroke-dasharray: 56, 56;
+  stroke-dashoffset: 0;
+  transition-delay: $duracion * 0.2;
+}
+
+.todo_check {
+  stroke: $stroke;
+  stroke-dasharray: 9.8 9.8;
+  stroke-dashoffset: 9;
+  transition-delay: $duracion * 0.4;
+}
+
+.todo_line {
+  stroke-dasharray: 168, 168;
+  stroke-dashoffset: 168;
+}
+
+.todo_circle {
+  animation-delay: $duracion * 0.7;
+  animation-duration: $duracion * 0.7;
+}
+
+.todo_state:checked {
+  ~ .todo_text { transition-delay: 0s; color: $colorTextChecked; opacity: 0.6;}
+  ~ .todo_icon .todo_box { stroke-dashoffset: 56; transition-delay: 0s; }
+  ~ .todo_icon .todo_line { stroke-dashoffset: -8; }
+  ~  .todo_icon .todo_check { stroke-dashoffset: 0; transition-delay: $duracion * 0.6; }
+  ~ .todo_icon .todo_circle { animation-name: explode;}
+}
